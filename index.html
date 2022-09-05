@@ -12,9 +12,50 @@
       const gameChoices = ["rock", "paper", "scissors"];
       // Function to allow computer to pick a random choice from the gameChoices array
       function getComputerChoice(gameChoices) {
+        // Return statement that randomly selects one of the game choices each time the function is run
         return gameChoices[Math.floor(Math.random() * gameChoices.length)];
       }
-      console.log(getComputerChoice(gameChoices));
+      // Assigns return value of getComputerChoice to variable called computerChoice for reference further down the line
+      let computerChoice = getComputerChoice(gameChoices);
+      // Pop up prompt requesting input from player and automatically converts string to lowercase for comparison
+      let playerSelection = prompt("Rock, paper, or scissors?").toLowerCase();
+      // Plays single round taking input from player and getComputerChoice function, comparisons for each possible outcome including incorrect input response
+      function playRound(computerChoice, playerSelection) {
+        if (computerChoice === "rock" && playerSelection === "paper") {
+          return "You win! Paper beats rock!";
+        } else if (
+          computerChoice === "paper" &&
+          playerSelection === "scissors"
+        ) {
+          return "You win! Scissors beat paper!";
+        } else if (
+          computerChoice === "scissors" &&
+          playerSelection === "rock"
+        ) {
+          return "You win! Rock beats scissors!";
+        } else if (
+          computerChoice === "rock" &&
+          playerSelection === "scissors"
+        ) {
+          return "You lose! Rock beats scissors";
+        } else if (computerChoice === "paper" && playerSelection === "rock") {
+          return "You lose! Paper beats rock!";
+        } else if (
+          computerChoice === "scissors" &&
+          playerSelection === "paper"
+        ) {
+          return "You lose! Scissors beat paper!";
+        } else if (computerChoice === playerSelection) {
+          return "You guessed the same as the computer, that must count for something, no it doesn't lol";
+        } else {
+          return "That is not an option!";
+        }
+      }
+      function game() {
+        for (let i = 0; i < 5; i++) {
+          playRound(computerChoice, playerSelection);
+        }
+      }
     </script>
   </body>
 </html>
