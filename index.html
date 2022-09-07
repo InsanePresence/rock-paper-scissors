@@ -8,53 +8,58 @@
   </head>
   <body>
     <script>
-      // Initialization of array containing game selection choices for player and computer
       const gameChoices = ["rock", "paper", "scissors"];
-      // Function to allow computer to pick a random choice from the gameChoices array
+      let computerChoice = getComputerChoice(gameChoices);
+      let playerSelection = prompt("Rock, paper, or scissors?").toLowerCase();
+      let computerScore = 0;
+      let playerScore = 0;
+      let roundCount = 0;
       function getComputerChoice(gameChoices) {
-        // Return statement that randomly selects one of the game choices each time the function is run
         return gameChoices[Math.floor(Math.random() * gameChoices.length)];
       }
-      // Assigns return value of getComputerChoice to variable called computerChoice for reference further down the line
-      let computerChoice = getComputerChoice(gameChoices);
-      // Pop up prompt requesting input from player and automatically converts string to lowercase for comparison
-      let playerSelection = prompt("Rock, paper, or scissors?").toLowerCase();
-      // Plays single round taking input from player and getComputerChoice function, comparisons for each possible outcome including incorrect input response
       function playRound(computerChoice, playerSelection) {
         if (computerChoice === "rock" && playerSelection === "paper") {
-          return "You win! Paper beats rock!";
+          //return "You win! Paper beats rock!";
+          return playerScore++;
         } else if (
           computerChoice === "paper" &&
           playerSelection === "scissors"
         ) {
-          return "You win! Scissors beat paper!";
+          //return "You win! Scissors beat paper!";
+          return playerScore++;
         } else if (
           computerChoice === "scissors" &&
           playerSelection === "rock"
         ) {
-          return "You win! Rock beats scissors!";
+          //return "You win! Rock beats scissors!";
+          return playerScore++;
         } else if (
           computerChoice === "rock" &&
           playerSelection === "scissors"
         ) {
           return "You lose! Rock beats scissors";
         } else if (computerChoice === "paper" && playerSelection === "rock") {
-          return "You lose! Paper beats rock!";
+          //return "You lose! Paper beats rock!";
+          return computerScore++;
         } else if (
           computerChoice === "scissors" &&
           playerSelection === "paper"
         ) {
-          return "You lose! Scissors beat paper!";
+          //return "You lose! Scissors beat paper!";
+          return computerScore++;
         } else if (computerChoice === playerSelection) {
-          return "You guessed the same as the computer, that must count for something, no it doesn't lol";
+          //return "You guessed the same as the computer, that must count for something, no it doesn't lol";
+          return computerScore++;
         } else {
           return "That is not an option!";
         }
       }
-      function game() {
-        for (let i = 0; i < 5; i++) {
-          playRound(computerChoice, playerSelection);
-        }
+      while (roundCount < 4) {
+        playRound(
+          (computerChoice = getComputerChoice(gameChoices)),
+          (playerSelection = prompt("Rock, paper, or scissors?").toLowerCase())
+        );
+        roundCount++;
       }
     </script>
   </body>
